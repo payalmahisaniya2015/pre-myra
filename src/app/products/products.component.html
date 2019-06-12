@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Products
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card *ngFor = "let pr of products" >
+    <ion-button fill="outline" slot="end" [routerLink]="['/viewproduct',pr.id]" routerLinkActive="router-link-active" >View</ion-button>
+      <ion-img width="90" height="90">{{pr.image}}</ion-img>
+      <ion-card-content>
+          <ion-item>
+            <ion-label>
+              Name: <p>{{pr.name}}</p>
+            </ion-label>
+            <ion-label>
+              Code: <p>{{pr.code}}</p>
+            </ion-label>
+            <ion-label>
+              Stock: <p>{{pr.quantity}}</p>
+            </ion-label>
+            <ion-label>
+              Price: <p>{{pr.price}}</p>
+            </ion-label>
+        </ion-item>
+      </ion-card-content>
+  </ion-card>
+
+  <!-- <ion-card>
+      <img class="ion-img-thumbnail ion-pull-right" width="90" height="90" src="https://img.mobiscroll.com/demos/card_2.png">
+      <ion-card-content>
+          <ion-item>
+              <ion-button fill="outline" slot="end">View</ion-button>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              Name:
+            </ion-label>
+            <ion-label>
+              Code:
+            </ion-label>
+            <ion-label>
+              Stock:
+            </ion-label>
+            <ion-label>
+              Price:
+            </ion-label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+        <img class="ion-img-thumbnail ion-pull-right" width="90" height="90" src="https://img.mobiscroll.com/demos/card_1.png">
+        <ion-card-content>
+            <ion-item>
+                <ion-button fill="outline" slot="end">View</ion-button>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                Name:
+              </ion-label>
+              <ion-label>
+                Code:
+              </ion-label>
+              <ion-label>
+                Stock:
+              </ion-label>
+              <ion-label>
+                Price:
+              </ion-label>
+          </ion-item>
+        </ion-card-content>
+      </ion-card> -->
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['/addproduct']" routerLinkActive="router-link-active" >
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

@@ -1,0 +1,44 @@
+<ion-app>
+  <ion-split-pane>
+    <ion-menu>
+      <ion-header>
+        <ion-toolbar>
+            <div class="account">
+                <ion-icon class="account_image" slot="start" [src]="'assets/icon/baseline-person-24px.svg'" [ngStyle]="{'color':'white'}" ></ion-icon>
+                <!-- <ion-icon slot="start" [src]="'assets/baseline-cancel-24px.svg'" [ngStyle]="{'color':'white'}"></ion-icon> -->
+                <div class="signin">
+                   <h6>Email -</h6>
+                   <a href="#" [ngStyle]="{'color':'white'}">Sign-out</a>
+                </div>
+            </div>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appUsers">
+            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+              <ion-icon slot="start" [src]="p.icon"></ion-icon>
+              <ion-label>
+                {{p.title}}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+        <ion-list>
+        <div class="adminstartion">
+          Adminstartion
+        </div>  
+        <ion-menu-toggle auto-hide="false" *ngFor="let p of appAdmin">
+            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+              <ion-icon slot="start" [src]="p.icon"></ion-icon>
+              <ion-label>
+                {{p.title}}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

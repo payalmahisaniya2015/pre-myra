@@ -1,0 +1,40 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>
+        View Product
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-card>
+        <ion-img width="90" height="90">{{viewproduct.image}}</ion-img>
+        <ion-card-content>
+          <ion-item>
+            <ion-label>
+              Name: <p>{{viewproduct.name}}</p>
+            </ion-label>
+          </ion-item>  
+          <ion-item>
+            <ion-label>
+              Code: <p>{{viewproduct.code}}</p>
+            </ion-label>
+          </ion-item>  
+          <ion-item>  
+            <ion-label>
+              Stock: <p>{{viewproduct.quantity}}</p>
+            </ion-label>
+          </ion-item>  
+          <ion-item>  
+            <ion-label>
+              Price: <p>{{viewproduct.price}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+      <!-- {{viewproduct | json}}; -->
+  </ion-content>
+  

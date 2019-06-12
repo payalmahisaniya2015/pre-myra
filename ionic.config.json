@@ -1,0 +1,7 @@
+{
+  "name": "pre-myra",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
