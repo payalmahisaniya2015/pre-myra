@@ -11,27 +11,6 @@
 
   <ion-content>
     <ion-card>
-      <ion-img [ngStyle]="{'width': '100%', 'height': '150px'}" [src]="viewproduct.image"  ></ion-img>
-    </ion-card> 
-    
-      <ion-card-content>
-        <ion-list>
-          <ion-icon class="editicon" [src]="'assets/icon/baseline-edit-24px.svg'"></ion-icon>
-          <ion-item>
-            <ion-label> Name:</ion-label><p>{{viewproduct.name}}</p>
-          </ion-item>
-          <ion-item> 
-            <ion-label>Code: </ion-label><p>{{viewproduct.code}}</p>
-          </ion-item>   
-            <ion-item>   
-            <ion-label>Stock: </ion-label> <p>{{viewproduct.quantity}}</p>
-          </ion-item>  
-            <ion-item>
-            <ion-label>Price:</ion-label> <p>{{viewproduct.price}}</p>
-          </ion-item>
-        </ion-list>
-     </ion-card-content>
-    <!-- <ion-card>
         <ion-img width="90" height="90">{{viewproduct.image}}</ion-img>
         <ion-card-content>
           <ion-item>
@@ -55,8 +34,7 @@
             </ion-label>
           </ion-item>
         </ion-card-content>
-      </ion-card> -->
+      </ion-card>
       <!-- {{viewproduct | json}}; -->
   </ion-content>
   
-

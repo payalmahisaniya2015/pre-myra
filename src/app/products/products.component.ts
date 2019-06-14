@@ -2,101 +2,26 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from './products.service';
 import { Products } from './products';
 import { Observable, Observer } from 'rxjs';
-import { headersToString } from 'selenium-webdriver/http';
-import { AlertController } from '@ionic/angular';
-import { ModalController } from '@ionic/angular';
-import { ImageViewerComponent } from '../component/image-viewer/image-viewer.component';
-import { ToastController } from '@ionic/angular';
-// import { map } from 'rxjs/operators';
 // import { url } from 'inspector';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss'],
+  styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  height: number = 10;
-  width: number = 10;
+
   products: Products[];
-  styleimage(){
-    return {width: this.width, height: this.height}
-  }
+
   // name = 'Angular 7';
   // base64Image: any;
 
-  constructor(private pservice: ProductsService, public alertController: AlertController, public modalController: ModalController,public toastController: ToastController) {}
+  constructor(private pservice: ProductsService) {}
 
   ngOnInit() {
     this.pservice.getData().subscribe((data: Products[]) => {
       this.products = data;
-      console.log(data);
     });
-  }
-
-
-  async deletealert(product: Products) {
-    const alert = await this.alertController.create({
-      header: 'Confirm!',
-      message: 'Are you sure you want to delete this product?',
-      buttons: [
-        {
-          text: 'No',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          }
-        }, {
-          text: 'Yes',
-          handler: () => {
-            console.log('Confirm Okay');
-            this.deleteproduct(product);
-          }
-        }
-      ]
-    });
-
-    await alert.present();
-  }
-  async viewImage(src: string) {
-    const modal = await this.modalController.create({
-      component: ImageViewerComponent,
-      componentProps: {
-        imgSource: src,
-
-      },
-      cssClass: 'modal-fullscreen',
-      keyboardClose: true,
-      showBackdrop: true
-    });
-
-    return await modal.present();
-  }
-
-  async presentToast() {
-    const toast = await this.toastController.create({
-      message: 'successfully deleted',
-      duration: 3000
-    });
-    toast.present();
-  }
-
-  deleteproduct(product: Products){
-    
-    this.pservice.deleteData(product).subscribe((data: Products) => {
-     // this.products = data;
-      console.log(data);
-      this.presentToast();
-    
-        this.pservice.getData().subscribe((data: Products[]) => {
-        this.products = data;
-        console.log(data);
-      });
-  
-    });
-  
-    console.log(product);
   }
 //     const imageUrl = 'http://localhost:81/pRESTige-master/api/products/';
 
