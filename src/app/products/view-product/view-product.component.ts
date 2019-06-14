@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Params, Router, ActivatedRoute} from '@angular/router';
-import { ViewProductService } from './view-product.service';
-import { ViewProduct } from './view-product';
 import { ProductsService } from '../products.service';
 import { Products } from '../products';
 import { HttpParams } from '@angular/common/http';
@@ -13,23 +11,19 @@ import { HttpParams } from '@angular/common/http';
 })
 export class ViewProductComponent implements OnInit {
 
-  viewproduct: ViewProduct[];
+  viewproduct: Products[];
   id;
-  constructor(private pservice: ViewProductService, private router: Router, private route: ActivatedRoute) {}
-  // constructor() { }
+  constructor(private pservice: ProductsService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
      this.id = this.route.snapshot.paramMap.get('id');
-    // console.log(this.id);
+
      if (this.id) {
-      this.pservice.getData(this.id).subscribe((data: ViewProduct[]) => {
+      this.pservice.getProduct(this.id).subscribe((data: Products[]) => {
         this.viewproduct = data;
-      
-      });
+        });
+    } else {
+      console.log('No details found');
     }
-    // console.log(this.viewproduct);
-    // } else {
-    //   console.log('No details found');
-    // }
     }
 }

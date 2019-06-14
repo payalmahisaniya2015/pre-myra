@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">pre-myra</string>
+    <string name="title_activity_main">pre-myra</string>
+    <string name="package_name">com.example.myra</string>
+    <string name="fileprovider_authority">com.example.myra.fileprovider</string>
+    <string name="custom_url_scheme">com.example.myra</string>
+</resources>
