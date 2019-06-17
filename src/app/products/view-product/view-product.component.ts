@@ -16,21 +16,26 @@ export class ViewProductComponent implements OnInit {
   constructor(private pservice: ProductsService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
-      this.pservice.refreshNeeded$
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.pservice.refreshNeeded$
      .subscribe(() => {
        this.getProduct(this.id);
      });
-      this.getProduct(this.id);
+    this.getProduct(this.id);
+
+      // this.id = this.route.snapshot.paramMap.get('id');
+      // if (this.id) {
+      //   this.pservice.getProduct(this.id).subscribe((data: Products[]) => {
+      //     this.viewproduct = data;
+      //   });
+      // } else {
+      //   console.log('No details found');
+      // }
 }
 
    private getProduct(id: string) {
-    this.id = this.route.snapshot.paramMap.get('id');
       this.pservice.getProduct(this.id).subscribe((data: Products[]) => {
         this.viewproduct = data;
         });
-      } 
-      // else {
-      //   console.log('No details found');
-      // }
-  // }
+      }
 }

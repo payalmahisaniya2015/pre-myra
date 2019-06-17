@@ -20,11 +20,11 @@ export class AddEditProductComponent implements OnInit {
   addeditproduct: Products;
 
   posts: Products[] = [];
-  id;
+  id: string;
 
   constructor(private pf: FormBuilder,
               private pservice: ProductsService,
-              private router: Router,
+              public router: Router,
               private route: ActivatedRoute) {
     this.createForm();
   }
@@ -83,7 +83,7 @@ export class AddEditProductComponent implements OnInit {
   onSubmit() {
     if (this.id) {
       this.updateProduct();
-      this.router.navigateByUrl('/viewproduct/:id'); // /product
+      this.router.navigate(['/viewproduct', this.id]);
     } else {
     this.addeditproduct = this.productForm.value;
     // this.addeditproduct.image = this.imagefile;
@@ -95,6 +95,14 @@ export class AddEditProductComponent implements OnInit {
     );
     this.router.navigateByUrl('/product');
   }
+  }
+
+  onCancel() {
+    if (this.id) {
+    this.router.navigate(['/viewproduct', this.id]);
+    } else {
+      this.router.navigate(['/product']);
+    }
   }
   // onsave(){
   //   let added =  this.productForm.value;
