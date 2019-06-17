@@ -14,8 +14,8 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 
 import { ProductsComponent } from './products/products.component';
 import { AddEditProductComponent } from './products/add-edit-product/add-edit-product.component';
+import { SubproductsComponent } from './products/subproducts/subproducts.component';
 import { HomePage } from './home/home.page';
-import { ListPageModule } from './list/list.module';
 import { HomePageModule } from './home/home.module';
 import { ViewProductComponent } from './products/view-product/view-product.component';
 import {ImageViewerComponent} from './image-viewer/image-viewer.component';
@@ -24,6 +24,8 @@ import { Observable, from } from 'rxjs';
 
 // import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
+import { AddEditSubproductComponent } from './products/subproducts/add-edit-subproduct/add-edit-subproduct.component';
+import { routes } from './app-routing/routes';
 
 @NgModule({
   declarations: [
@@ -31,20 +33,23 @@ import { FormsModule } from '@angular/forms';
     ProductsComponent,
     AddEditProductComponent,
     ViewProductComponent,
-    ImageViewerComponent
+    ImageViewerComponent,
+    SubproductsComponent,
+    AddEditSubproductComponent,
   ],
   entryComponents: [ImageViewerComponent],
   imports: [
+    // RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'}),
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     FormsModule,
     RouterModule,
     HomePageModule,
-    ListPageModule,
     HttpClientModule,
     ReactiveFormsModule
   ],
+  exports: [RouterModule],
   providers: [
     StatusBar,
     SplashScreen,

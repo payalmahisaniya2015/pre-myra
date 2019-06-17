@@ -7,7 +7,6 @@ import { ModalController } from '@ionic/angular';
 import { ImageViewerComponent } from '../image-viewer/image-viewer.component';
 import { ToastController } from '@ionic/angular';
 import { Observable, Observer } from 'rxjs';
-// import { url } from 'inspector';
 
 @Component({
   selector: 'app-products',
@@ -26,9 +25,18 @@ export class ProductsComponent implements OnInit {
   }
 
 
-  constructor(private pservice: ProductsService, public alertController: AlertController, public modalController: ModalController, public toastController: ToastController) {}
+ constructor (private pservice: ProductsService, public alertController: AlertController, public modalController: ModalController, public toastController: ToastController) {}
 
   ngOnInit() {
+
+    this.pservice.refreshNeeded$
+    .subscribe(() => {
+      this.getProducts();
+    });
+    this.getProducts();
+  }
+
+  private getProducts() {
     this.pservice.getProducts().subscribe((data: Products[]) => {
       this.products = data;
     });

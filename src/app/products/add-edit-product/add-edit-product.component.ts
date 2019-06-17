@@ -34,7 +34,7 @@ export class AddEditProductComponent implements OnInit {
     if (this.id) {
       this.pageTitle = 'Edit Product';
       this.pservice.getProduct(this.id).subscribe(
-        res => {
+        (res) => {
           this.productForm.patchValue({
 
             name: res.name,
@@ -50,8 +50,15 @@ export class AddEditProductComponent implements OnInit {
     }
   }
 
+  // imagefile: File;
+
+  // onFileSelected(event) {
+  //   this.imagefile = <File>event.target.files[0];
+  // }
+
   createForm() {
     this.productForm = this.pf.group({
+      // image: [''],
       name: '',
       code: '',
       quantity: '',
@@ -62,11 +69,12 @@ export class AddEditProductComponent implements OnInit {
 
   updateProduct() {
       this.addeditproduct = this.productForm.value;
-      console.log(this.addeditproduct);
+      console.table(this.addeditproduct);
       this.productForm.reset();
       this.pservice.updateProduct(this.addeditproduct, this.id)
       .subscribe(
-        (data) => {this.posts.push(data); }
+        (data) => {this.posts.push(data);
+         }
         // success => alert("Done"),
         // error => alert("error")
       );
@@ -75,10 +83,11 @@ export class AddEditProductComponent implements OnInit {
   onSubmit() {
     if (this.id) {
       this.updateProduct();
-      this.router.navigateByUrl('/viewproduct');
+      this.router.navigateByUrl('/viewproduct/:id'); // /product
     } else {
     this.addeditproduct = this.productForm.value;
-    console.log(this.addeditproduct);
+    // this.addeditproduct.image = this.imagefile;
+    console.table(this.addeditproduct);
     this.productForm.reset();
 
     this.pservice.createProduct(this.addeditproduct).subscribe(
@@ -87,4 +96,8 @@ export class AddEditProductComponent implements OnInit {
     this.router.navigateByUrl('/product');
   }
   }
+  // onsave(){
+  //   let added =  this.productForm.value;
+  //   added.image = this.imagefile;
+  // }
 }

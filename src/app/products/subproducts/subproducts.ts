@@ -1,15 +1,15 @@
-export interface Products {
+export interface Subproducts {
     id: number;
     name: string;
-    code: string;
     quantity: number;
+    color: string;
     description: string;
     price: string;
-    image: File;
-    secret: string;
+    image: string;
     createAt: string;
     updateAt: string;
-    isPublish: number;
     isActive: number;
     isDeleted: number;
+    secret: string;
+    ProductId: number;
 }
