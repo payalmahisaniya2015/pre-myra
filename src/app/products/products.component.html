@@ -11,7 +11,7 @@
 
 <ion-content>
 
-  <ion-card *ngFor = "let pr of products" >
+  <ion-card *ngFor = "let pr of products.slice().reverse()" >
     <div class="row" > 
       <div class="col-xs-3" >
         <ion-img class="productimage" [src]="pr.image" (click)="viewImage(pr.image)"  [ngStyle]="{'width': '60px', 'height': '60px' , 'margin-top':'12px '}"   ></ion-img>
@@ -20,6 +20,7 @@
         <div class="productlist">
           <table > 
             <div fill="outline" slot="end" [routerLink]="['/viewproduct',pr.id]" routerLinkActive="router-link-active" [ngStyle]="{'width':'100%'}"> 
+              <tr  colspan="2" [ngStyle]="{'width':'100%'}"><ion-label><b>ID: </b>{{pr.id}}</ion-label></tr>
               <tr  colspan="2" [ngStyle]="{'width':'100%'}"><ion-label><b>Name: </b>{{pr.name}}</ion-label></tr>
               <tr  colspan="2" [ngStyle]="{'width':'100%'}"><ion-label><b>Code: </b>{{pr.code}}</ion-label></tr>
               <tr  colspan="2" [ngStyle]="{'width':'100%'}"><ion-label><b>Stock:</b>{{pr.quantity}}</ion-label></tr>

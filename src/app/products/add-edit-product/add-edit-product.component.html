@@ -11,12 +11,10 @@
 
   <ion-content>
       <form [formGroup]="productForm" (ngSubmit)="onSubmit(productForm)" padding-right>
-          <ion-item>
-            <!-- <ion-label position="floating">Product image</ion-label> -->
-            <!-- <ngx-image-uploader [options]="options" (upload)="onUpload($event)"></ngx-image-uploader> -->
-            <input #imageInput type="file" accept="image/*" (change)="processFile($event)">
-            <!-- <ion-input type="file"  name="name" (change)="onFileSelected($event)"  formControlName="image" webkitdirectory multiple></ion-input> -->
-          </ion-item>
+          <!-- <ion-item>
+              <ion-label position="floating">Product Image</ion-label>
+              <ion-input type="file" name="name" (change)="onFileSelected($event)"></ion-input>
+          </ion-item> -->
           <ion-item>
               <ion-label position="floating">Product Name</ion-label>
               <ion-input type="text" formControlName="name" required></ion-input>
@@ -37,7 +35,19 @@
             <ion-label position="floating">Product Description</ion-label>
             <ion-textarea formControlName="description"></ion-textarea>
           </ion-item>
+          <ion-item>
+              <ion-label position="floating">Add Subproducts</ion-label>
+              <ion-fab-button [routerLink]="['/addeditsubproduct']" routerLinkActive="router-link-active" >
+                <ion-icon name="add"></ion-icon>
+              </ion-fab-button>
+          </ion-item>
+          <!-- <ion-item>
+              <ion-label>Is Active</ion-label>
+              <ion-checkbox formControlName="isActive" color="primary"></ion-checkbox>
+          </ion-item> -->
       
-          <ion-button color="primary" type="submit" click="onsave()"> Submit</ion-button>
+          <ion-button color="primary" type="submit" > Submit </ion-button> 
+          <!-- (click)="onsave()" -->
+          <ion-button color="secondary" type="button" ng-click="cancel()" (click)="onCancel()" > Cancel </ion-button>
       </form>
   </ion-content>

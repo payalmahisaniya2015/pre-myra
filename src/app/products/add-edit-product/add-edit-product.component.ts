@@ -21,12 +21,11 @@ export class AddEditProductComponent implements OnInit {
   addeditproduct: Products;
 
   posts: Products[] = [];
-  id;
-  public files: any[];
-  
+  id: string;
+
   constructor(private pf: FormBuilder,
               private pservice: ProductsService,
-              private router: Router,
+              public router: Router,
               private route: ActivatedRoute) {
     this.createForm(); 
   }
@@ -40,16 +39,6 @@ export class AddEditProductComponent implements OnInit {
     
  
 
-  createForm() {
-    this.productForm = this.pf.group({
-      image: [''],
-      name: [''],
-      code: [''],
-      quantity: [''],
-      price: [''],
-      description: ['']
-    });
-  }
 
  imagefile: string;
 //  onFileSelected(event){
@@ -69,7 +58,7 @@ export class AddEditProductComponent implements OnInit {
     if (this.id) {
       this.pageTitle = 'Edit Product';
       this.pservice.getProduct(this.id).subscribe(
-        res => {
+        (res) => {
           this.productForm.patchValue({
             image: this.imagefile,
             name: res.name,
@@ -85,15 +74,31 @@ export class AddEditProductComponent implements OnInit {
     }
   }
 
+  // imagefile: File;
 
+  // onFileSelected(event) {
+  //   this.imagefile = <File>event.target.files[0];
+  // }
+
+  createForm() {
+    this.productForm = this.pf.group({
+      // image: [''],
+      name: '',
+      code: '',
+      quantity: '',
+      price: '',
+      description: ''
+    });
+  }
 
   updateProduct() {
       this.addeditproduct = this.productForm.value;
-      console.log(this.addeditproduct);
+      console.table(this.addeditproduct);
       this.productForm.reset();
       this.pservice.updateProduct(this.addeditproduct, this.id)
       .subscribe(
-        (data) => {this.posts.push(data); }
+        (data) => {this.posts.push(data);
+         }
         // success => alert("Done"),
         // error => alert("error")
       );
@@ -102,11 +107,11 @@ export class AddEditProductComponent implements OnInit {
   onSubmit() {
     if (this.id) {
       this.updateProduct();
-      // this.router.navigateByUrl('/viewproduct');
+      this.router.navigate(['/viewproduct', this.id]);
     } else {
     this.addeditproduct = this.productForm.value;
-    //  this.addeditproduct.image = this.imagefile; 
-    console.log(this.addeditproduct);
+    // this.addeditproduct.image = this.imagefile;
+    console.table(this.addeditproduct);
     this.productForm.reset();
 
     this.pservice.createProduct(this.addeditproduct).subscribe(
@@ -115,4 +120,16 @@ export class AddEditProductComponent implements OnInit {
     this.router.navigateByUrl('/product');
   }
   }
+
+  onCancel() {
+    if (this.id) {
+    this.router.navigate(['/viewproduct', this.id]);
+    } else {
+      this.router.navigate(['/product']);
+    }
+  }
+  // onsave(){
+  //   let added =  this.productForm.value;
+  //   added.image = this.imagefile;
+  // }
 }
