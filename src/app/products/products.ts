@@ -5,7 +5,7 @@ export interface Products {
     quantity: number;
     description: string;
     price: string;
-    image: string;
+    image: File;
     secret: string;
     createAt: string;
     updateAt: string;

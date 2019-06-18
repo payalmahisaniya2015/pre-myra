@@ -24,6 +24,7 @@ import { Observable, from } from 'rxjs';
 
 // import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
+import { ImageUploaderModule } from 'ngx-image-uploader';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { FormsModule } from '@angular/forms';
     HomePageModule,
     ListPageModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ImageUploaderModule
   ],
   providers: [
     StatusBar,

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../products.service';
 import { Products } from '../products';
+import { ImageUploaderOptions, FileQueueObject } from 'ngx-image-uploader';
 
 import { HttpParams } from '@angular/common/http';
 @Component({
@@ -21,14 +22,48 @@ export class AddEditProductComponent implements OnInit {
 
   posts: Products[] = [];
   id;
-
+  public files: any[];
+  
   constructor(private pf: FormBuilder,
               private pservice: ProductsService,
               private router: Router,
               private route: ActivatedRoute) {
-    this.createForm();
+    this.createForm(); 
   }
 
+
+  processFile(event){
+      let file = event.target.files[0];
+      let fileName = file.value;
+      console.log(fileName);
+  }
+    
+ 
+
+  createForm() {
+    this.productForm = this.pf.group({
+      image: [''],
+      name: [''],
+      code: [''],
+      quantity: [''],
+      price: [''],
+      description: ['']
+    });
+  }
+
+ imagefile: string;
+//  onFileSelected(event){
+//    this.imagefile = URL.createObjectURL(event.target.files[0])
+//    console.log(this.imagefile);
+
+//  }
+// onUpload(e):void{
+//   this.imagefile = e.target.value;
+//   console.log(this.imagefile);
+// }
+
+
+ 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) {
@@ -36,7 +71,7 @@ export class AddEditProductComponent implements OnInit {
       this.pservice.getProduct(this.id).subscribe(
         res => {
           this.productForm.patchValue({
-
+            image: this.imagefile,
             name: res.name,
             code: res.code,
             quantity: res.quantity,
@@ -50,15 +85,7 @@ export class AddEditProductComponent implements OnInit {
     }
   }
 
-  createForm() {
-    this.productForm = this.pf.group({
-      name: '',
-      code: '',
-      quantity: '',
-      price: '',
-      description: ''
-    });
-  }
+
 
   updateProduct() {
       this.addeditproduct = this.productForm.value;
@@ -75,9 +102,10 @@ export class AddEditProductComponent implements OnInit {
   onSubmit() {
     if (this.id) {
       this.updateProduct();
-      this.router.navigateByUrl('/viewproduct');
+      // this.router.navigateByUrl('/viewproduct');
     } else {
     this.addeditproduct = this.productForm.value;
+    //  this.addeditproduct.image = this.imagefile; 
     console.log(this.addeditproduct);
     this.productForm.reset();
 
